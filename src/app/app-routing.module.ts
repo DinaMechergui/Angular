@@ -8,8 +8,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', redirectTo: '', pathMatch:'full'},
   { path: 'events', component: ListEventComponent },
-  {path:'**',component:NotFoundComponent} 
-  
+  {path:'',component:NotFoundComponent} //redirection vers la page d'accueil si la page n'existe pas
 ];
 
 @NgModule({

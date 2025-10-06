@@ -1,9 +1,34 @@
 <div class="container py-4">
-  <h2 class="mb-3">Liste des événements</h2>
+    <h2 class="mb-3">Liste des événements</h2>
+  
+    <!-- Recherche -->
+    <input type="text" class="form-control mb-4"
+           [(ngModel)]="searchText"
+           placeholder="Rechercher un événement">
+  
+   <div class="row g-3">
+  <div class="col-md-4" *ngFor="let e of events | contains:searchText">
+    <div class="card h-100 shadow-sm">
+    <img [src]="e.imageUrl || 'assets/default.jpg'"
+         class="card-img-top img-fluid"
+         style="height: 200px; object-fit: cover;">
+    <div class="card-body">
+      <h2 appHighlight>{{ e.title | uppercase }}</h2>
+      <p class="text-muted">Lieu : {{ e.location }}</p>
+      <p>Date : {{ e.date | date:'mediumDate' }}</p>
+      <p class="fw-bold">Prix : {{ e.price | currency:'TND':'symbol':'1.2-2' }}</p>
+      <p class="fw-bold">Likes : {{ e.likes }}</p>
 
-  <!-- Recherche -->
-
-
-<app-card></app-card>
+      <button class="btn btn-sm btn-primary"
+              (click)="like(e)"
+              [disabled]="isExpired(e)">
+        👍 Like
+      </button>
+      <span class="ms-2">{{ e.likes }}</span>
+      <span *ngIf="isExpired(e)" class="text-danger ms-2">(Expiré)</span>
+    </div>
+  </div>
 </div>
->
+
+      </div>
+ 

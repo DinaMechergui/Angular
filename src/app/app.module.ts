@@ -11,6 +11,7 @@ import { ListEventComponent } from './Layout/list-event/list-event.component';
 import { FormsModule } from '@angular/forms';
 import { FilterEventPipe } from './pipes/filter-event.pipe';
 import { CardComponent } from './card/card.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -21,14 +22,14 @@ import { CardComponent } from './card/card.component';
     HomeComponent,
     NotFoundComponent,
     ListEventComponent,
-    FilterEventPipe,
-   
+    FilterEventPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule ,
-    CardComponent
+    CardComponent,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
