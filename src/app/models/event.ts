@@ -1,0 +1,9 @@
+export interface Event {
+  id: number;
+  title: string;
+  location: string;
+  date: Date;
+  likes: number;
+  imageUrl?: string;
+  price: number;
+}

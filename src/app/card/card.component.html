@@ -1,0 +1,50 @@
+<div class="container py-4">
+
+
+  <!-- Recherche -->
+  <input type="text" class="form-control mb-4"
+         [(ngModel)]="searchText"
+         placeholder="Rechercher un événement">
+
+  <div class="row g-3">
+    <ng-container *ngFor="let e of events">
+      <ng-container *ngIf="!searchText || 
+                            e.title.toLowerCase().includes(searchText.toLowerCase()) || 
+                            e.location.toLowerCase().includes(searchText.toLowerCase()); else noMatch">
+
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <img [src]="e.imageUrl || 'assets/default.jpg'"
+                 class="card-img-top img-fluid"
+                 style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">{{ e.title| uppercase  }}</h5>
+              <p class="text-muted">Lieu : {{ e.location }}</p>
+              <p>Date : {{ e.date | date:'mediumDate' }}</p>
+              <p>Prix : {{ e.price | number:'1.2-2' }} €</p>
+<p>Prix en USD : {{ e.price | currency:'USD':'symbol':'1.2-2' }}</p>
+
+              <p class="fw-bold">Likes : {{ e.likes }}</p>
+
+              <button class="btn btn-sm btn-primary"
+                      (click)="like(e)"
+                      [disabled]="isExpired(e)">
+                👍 Like
+              </button>
+              <span class="ms-2">{{ e.likes }}</span>
+              <span *ngIf="isExpired(e)" class="text-danger ms-2">(Expiré)</span>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+    </ng-container>
+
+    <ng-template #noMatch>
+      <div class="col-12">
+        <p class="text-muted">Aucun événement ne correspond à votre recherche.</p>
+      </div>
+    </ng-template>
+
+  </div>
+</div>
