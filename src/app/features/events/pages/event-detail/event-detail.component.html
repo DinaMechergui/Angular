@@ -1,0 +1,8 @@
+<h2>Détails de l’événement</h2>
+<div *ngIf="event">
+  <h3>{{ event.title }}</h3>
+  <p><strong>Date :</strong> {{ event.date }}</p>
+  <p><strong>Lieu :</strong> {{ event.address }}</p>
+  <p>{{ event.description }}</p>
+</div>
+<a routerLink="/events">⬅️ Retour à la liste</a>

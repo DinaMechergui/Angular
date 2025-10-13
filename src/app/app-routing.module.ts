@@ -8,7 +8,11 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', redirectTo: '', pathMatch:'full'},
   { path: 'events', component: ListEventComponent },
-  {path:'',component:NotFoundComponent} //redirection vers la page d'accueil si la page n'existe pas
+  {path:'',component:NotFoundComponent},
+  { path: 'events', loadChildren: () => import('./features/events/events.module').then(m => m.EventsModule) },
+  { path: 'tickets', loadChildren: () => import('./features/tickets/tickets.module').then(m => m.TicketsModule) },
+  { path: 'feedback', loadChildren: () => import('./features/feedback/feedback.module').then(m => m.FeedbackModule) },
+  { path: 'users', loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule) } 
 ];
 
 @NgModule({
